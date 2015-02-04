@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}My Web site{% endblock %}</title>
+</head>
+<body>
+    <dev id="header">
+        <a href="/section1/">Section 1</a>
+        <a href="/section2/">Section 2</a>
+    </dev>
+    <dev id="content">
+        {% block content %} {% endblock %}
+    </dev>
+    <dev id="footer">
+        <a href="/about/">About The Site</a>
+    </dev>
+</body>
+</html>

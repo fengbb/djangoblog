@@ -1,0 +1,24 @@
+{% extends 'base1.html' %}
+{% block title %}个人博客{% endblock %}
+{% block content %}
+
+    <div class="content">
+{% for b in blogs %}
+    <h1>{{ b.title }}</h1>
+    <h3>{{ b.createdate }}</h3>
+    <p>{{ b.content }}</p>
+{% endfor %}
+    </div>
+{% endblock %}
+
+
+
+<p>{{ b.content|truncatewords:30}}</p>
+<p>{{ b.content|cutstr:100}}</p>
+
+<p>{{ b.content| truncatewords:30 }}</p>
+"""
+     截取字符串，使得字符串长度等于length，并在字符串后加上省略号
+    """
+
+#为了中文和英文的长度一致（中文按长度2计算）

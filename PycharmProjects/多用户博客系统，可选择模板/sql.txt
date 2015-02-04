@@ -1,0 +1,604 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2013 年 06 月 16 日 12:57
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.3.3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 数据库: `tblog`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_group`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `auth_group`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_group_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_5f412f9a` (`group_id`),
+  KEY `auth_group_permissions_83d7f98b` (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `auth_group_permissions`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
+  KEY `auth_permission_37ef4eb4` (`content_type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=37 ;
+
+--
+-- 转存表中的数据 `auth_permission`
+--
+
+INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
+(1, 'Can add permission', 1, 'add_permission'),
+(2, 'Can change permission', 1, 'change_permission'),
+(3, 'Can delete permission', 1, 'delete_permission'),
+(4, 'Can add group', 2, 'add_group'),
+(5, 'Can change group', 2, 'change_group'),
+(6, 'Can delete group', 2, 'delete_group'),
+(7, 'Can add user', 3, 'add_user'),
+(8, 'Can change user', 3, 'change_user'),
+(9, 'Can delete user', 3, 'delete_user'),
+(10, 'Can add content type', 4, 'add_contenttype'),
+(11, 'Can change content type', 4, 'change_contenttype'),
+(12, 'Can delete content type', 4, 'delete_contenttype'),
+(13, 'Can add session', 5, 'add_session'),
+(14, 'Can change session', 5, 'change_session'),
+(15, 'Can delete session', 5, 'delete_session'),
+(16, 'Can add site', 6, 'add_site'),
+(17, 'Can change site', 6, 'change_site'),
+(18, 'Can delete site', 6, 'delete_site'),
+(19, 'Can add poll', 7, 'add_poll'),
+(20, 'Can change poll', 7, 'change_poll'),
+(21, 'Can delete poll', 7, 'delete_poll'),
+(22, 'Can add choice', 8, 'add_choice'),
+(23, 'Can change choice', 8, 'change_choice'),
+(24, 'Can delete choice', 8, 'delete_choice'),
+(25, 'Can add log entry', 9, 'add_logentry'),
+(26, 'Can change log entry', 9, 'change_logentry'),
+(27, 'Can delete log entry', 9, 'delete_logentry'),
+(28, 'Can add category', 10, 'add_category'),
+(29, 'Can change category', 10, 'change_category'),
+(30, 'Can delete category', 10, 'delete_category'),
+(31, 'Can add article', 11, 'add_article'),
+(32, 'Can change article', 11, 'change_article'),
+(33, 'Can delete article', 11, 'delete_article'),
+(34, 'Can add user profile', 12, 'add_userprofile'),
+(35, 'Can change user profile', 12, 'change_userprofile'),
+(36, 'Can delete user profile', 12, 'delete_userprofile');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_user`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=21 ;
+
+--
+-- 转存表中的数据 `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$10000$wHghXfqjzUQ9$x5tEnfaApvs51sFPmrHfSQ6wWLxwUeEndmOuZSvEv/M=', '2013-06-15 09:51:55', 1, 'admin', '', '', 'admin@admin.com', 1, 1, '2013-05-29 07:00:26'),
+(2, 'pbkdf2_sha256$10000$hqxA1AIKZyPY$qfwzOf/m+wbMNSFOa/+Q/vefQtY5VilHT8V3X2Rk0zQ=', '2013-06-14 03:50:31', 0, 'aaa', 'aaa', '', 'aaa@aaa.com', 0, 1, '2013-06-14 03:50:31'),
+(3, 'a', '0000-00-00 00:00:00', 0, '', '', '', '', 0, 0, '0000-00-00 00:00:00'),
+(4, 'pbkdf2_sha256$10000$wkZqSgSZYPBk$ByMJf03goO2oHiDCgpJYW/kGdI+q8mc97XwxQ1XSDLQ=', '2013-06-14 03:52:53', 0, 'q', 'q', '', 'q@q.com', 0, 1, '2013-06-14 03:52:53'),
+(5, 'pbkdf2_sha256$10000$OaxPj8uOiiEC$dr59gSPRZrkxmjhSTog0yx0dnR8dBZMAtRY3pFVjOxA=', '2013-06-14 03:53:20', 0, 'e', 'e', '', 'e', 0, 1, '2013-06-14 03:53:20'),
+(6, 'a', '0000-00-00 00:00:00', 1, 'a', 'a', 'a', 'a', 1, 1, '0000-00-00 00:00:00'),
+(8, 'pbkdf2_sha256$10000$P5nDnvwuUBCp$a2hvtkI1PiEvfduWlW3I9lyxyakhA3ND1MHpv47uYa8=', '2013-06-14 04:26:05', 0, 'ddd', 'ddd', '', 'ddd', 0, 1, '2013-06-14 04:26:05'),
+(9, 'pbkdf2_sha256$10000$yi3GQAJto3EX$23NioEH7AQUllgY+dYwN1+M6nCGeAnIPENtTmzreYOA=', '2013-06-14 04:26:33', 0, 'ee', 'ee', '', 'aaa@aaa.com', 0, 1, '2013-06-14 04:26:33'),
+(10, 'pbkdf2_sha256$10000$16m8qp0v1qzu$fK/Xs+WeRVQ8XG9niLZTHIDlV4zbdN+gnBHcrZKKvJc=', '2013-06-14 04:27:09', 0, 'asd', 'asd', '', 'sd', 0, 1, '2013-06-14 04:27:09'),
+(11, 'pbkdf2_sha256$10000$TfRAs5iaajCN$Xxn5DEuhJHdKN3YUhMtpn5r4OH/05n1kO+ptI0zXXBA=', '2013-06-15 04:45:34', 0, 'qqq', 'qqq', '', 'qqq', 0, 1, '2013-06-14 04:33:45'),
+(12, 'pbkdf2_sha256$10000$xThCMfSSmcIf$Bp3GA+6MeOz2JEUHYZN4mQp2U2dLzAbc1Ni0hiR1OgE=', '2013-06-14 05:10:18', 0, 'test', 'test', '', 'test', 0, 1, '2013-06-14 05:04:45'),
+(13, 'pbkdf2_sha256$10000$BmMOTrRPW4Ps$p3gcOw/1AWmSRg7xZqveVD9YqnoxbktcWw1SzSkkZRo=', '2013-06-15 04:38:16', 0, 'xiaoming', 'xiaoming', '', 'xiaoming', 0, 1, '2013-06-14 09:07:47'),
+(14, 'pbkdf2_sha256$10000$QOCXsK4uyG4Z$NoDKIC8+orIv2lAKPrKBhreBY8unOfRYNU/MRIXMCwA=', '2013-06-14 12:41:00', 0, 'jiange', 'jiange', '', 'jiang', 0, 1, '2013-06-14 12:32:03'),
+(15, 'pbkdf2_sha256$10000$A2EqGJd5Wsfy$dEGfd/jo/VvoGN+/qKKUe3xO7PRg8IvlmwWf3xTiXwQ=', '2013-06-15 03:28:33', 0, 'wangjian', 'wangjian', '', 'wangjian', 0, 1, '2013-06-14 13:16:52'),
+(16, 'pbkdf2_sha256$10000$OfthtYaC0yAL$10FUdGnPsNlcx8AW6dwz+t59/pEirFP6OtNN+fMm9Qg=', '2013-06-15 04:43:19', 0, 'shuaishuai', 'shuaishuai', '', 'shuai', 0, 1, '2013-06-15 04:43:19'),
+(17, 'pbkdf2_sha256$10000$cykUpivqraOg$zCBq+LU8Ro25YhfzBbW7GexikW0OVDtD28mnNRFNh4U=', '2013-06-15 04:46:07', 0, 'www', 'www', '', 'www', 0, 1, '2013-06-15 04:46:00'),
+(18, 'pbkdf2_sha256$10000$OgJtTozoMzsO$bDFSH/xuxH2xt1mh1ApdGF0fFT0OdQsSFoSxs6BRVI0=', '2013-06-15 13:24:22', 0, 'wugui', 'wugui', '', 'wugui', 0, 1, '2013-06-15 05:06:16'),
+(20, 'pbkdf2_sha256$10000$73ml0gFzuw9j$/aiSMV4rPy+81nsdieJY1otBu2dO7VFAO8Jx1soJLQU=', '2013-06-15 10:00:37', 0, 'dao', 'dao', '', 'dao', 0, 1, '2013-06-15 10:00:25');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_user_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`group_id`),
+  KEY `auth_user_groups_6340c63c` (`user_id`),
+  KEY `auth_user_groups_5f412f9a` (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `auth_user_groups`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `auth_user_user_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_6340c63c` (`user_id`),
+  KEY `auth_user_user_permissions_83d7f98b` (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `auth_user_user_permissions`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `django_admin_log`
+--
+
+CREATE TABLE IF NOT EXISTS `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_6340c63c` (`user_id`),
+  KEY `django_admin_log_37ef4eb4` (`content_type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id`, `object_id`, `object_repr`, `action_flag`, `change_message`) VALUES
+(1, '2013-05-31 05:03:26', 1, 7, '1', 'asdfasdfasdf', 2, 'No fields changed.'),
+(2, '2013-05-31 05:03:52', 1, 7, '1', 'asdfasdfasdf', 2, 'No fields changed.'),
+(3, '2013-05-31 05:03:55', 1, 7, '1', 'asdfasdfasdf', 2, 'No fields changed.'),
+(4, '2013-05-31 05:35:37', 1, 7, '1', 'asdfasdfasdf', 2, 'Added choice "aaa". Added choice "bbb". Added choice "ccc".'),
+(5, '2013-05-31 05:36:18', 1, 7, '2', '1212', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `django_content_type`
+--
+
+CREATE TABLE IF NOT EXISTS `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `app_label` (`app_label`,`model`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=13 ;
+
+--
+-- 转存表中的数据 `django_content_type`
+--
+
+INSERT INTO `django_content_type` (`id`, `name`, `app_label`, `model`) VALUES
+(1, 'permission', 'auth', 'permission'),
+(2, 'group', 'auth', 'group'),
+(3, 'user', 'auth', 'user'),
+(4, 'content type', 'contenttypes', 'contenttype'),
+(5, 'session', 'sessions', 'session'),
+(6, 'site', 'sites', 'site'),
+(7, 'poll', 'polls', 'poll'),
+(8, 'choice', 'polls', 'choice'),
+(9, 'log entry', 'admin', 'logentry'),
+(10, 'category', 'TBlog', 'category'),
+(11, 'article', 'TBlog', 'article'),
+(12, 'user profile', 'TBlog', 'userprofile');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `django_session`
+--
+
+CREATE TABLE IF NOT EXISTS `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_b7b81f0c` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+--
+-- 转存表中的数据 `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('0kkubonamels8ng5xi55d32olx7chkuc', 'YTcyMWU2ZWQzYTA5ODM4ZjhhMGU2ZGVmNGVkMDU2YjcwMmMwMjc4ZTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==', '2013-06-14 04:53:46'),
+('moxaixcw4ruy3n7wji60usxd03skc7rp', 'NTEwM2I3NTIzYjQ4N2ZkYzdlZjMwZGExMTJmN2YxZTJmOTAyNjNiZTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQ51Lg==', '2013-06-28 12:41:00'),
+('z9p1wwvu6im8jekjhg7up0vvz8oti5qv', 'MDU0MzZjYWUzMDQ0ZjJhNzhlNGIwMWE3NzI1YWU0MThiOWNlYmEwNDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKARJ1Lg==', '2013-06-29 13:24:22');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `django_site`
+--
+
+CREATE TABLE IF NOT EXISTS `django_site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `domain` varchar(100) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `django_site`
+--
+
+INSERT INTO `django_site` (`id`, `domain`, `name`) VALUES
+(1, 'example.com', 'example.com');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `polls_choice`
+--
+
+CREATE TABLE IF NOT EXISTS `polls_choice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poll_id` int(11) NOT NULL,
+  `choice_text` varchar(200) NOT NULL,
+  `votes` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `polls_choice_70f78e6b` (`poll_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=7 ;
+
+--
+-- 转存表中的数据 `polls_choice`
+--
+
+INSERT INTO `polls_choice` (`id`, `poll_id`, `choice_text`, `votes`) VALUES
+(1, 1, 'aaa', 3),
+(2, 1, 'bbb', 0),
+(3, 1, 'ccc', 5),
+(4, 2, 'a', 0),
+(5, 2, 'b', 0),
+(6, 2, 'c', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `polls_poll`
+--
+
+CREATE TABLE IF NOT EXISTS `polls_poll` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(200) NOT NULL,
+  `pub_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `polls_poll`
+--
+
+INSERT INTO `polls_poll` (`id`, `question`, `pub_date`) VALUES
+(1, 'asdfasdfasdf', '2013-05-29 07:48:36'),
+(2, '1212', '2013-05-31 05:36:15');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tblog_article`
+--
+
+CREATE TABLE IF NOT EXISTS `tblog_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `pic` varchar(80) DEFAULT '',
+  `tags` varchar(120) DEFAULT '',
+  `summary` varchar(500) DEFAULT '',
+  `content` text NOT NULL,
+  `createTime` datetime NOT NULL,
+  `views` int(11) NOT NULL DEFAULT '0',
+  `comments` int(11) DEFAULT '0',
+  `goods` int(11) DEFAULT '0',
+  `bads` int(11) DEFAULT '0',
+  `status` int(11) DEFAULT '1',
+  `user_id` int(11) DEFAULT '1',
+  `user_name` varchar(80) DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `TBlog_article_6f33f001` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=67 ;
+
+--
+-- 转存表中的数据 `tblog_article`
+--
+
+INSERT INTO `tblog_article` (`id`, `category_id`, `title`, `pic`, `tags`, `summary`, `content`, `createTime`, `views`, `comments`, `goods`, `bads`, `status`, `user_id`, `user_name`) VALUES
+(2, 1, 'ddd34', '', '', '', 'aaa', '2013-06-12 01:01:34', 10, 0, NULL, NULL, 1, 1, ''),
+(4, 1, 'aaaa2222222222222222222222222222', '', '', '', 'b', '2013-06-12 01:01:42', 11, 0, NULL, NULL, 1, 1, ''),
+(5, 1, 'aaaaaaaaaa', '', '', '', 'bbbbbbbbbbbbbbbb', '0000-00-00 00:00:00', 17, 0, NULL, NULL, 1, 1, ''),
+(6, 1, 'aaaaaaaaaadsfsdfdsd', '', '', '', 'bbbbbbbbbbbbbbbb', '0000-00-00 00:00:00', 14, 0, NULL, NULL, 1, 1, ''),
+(7, 1, 'aaaaaaaaaa111333', '', '', '', 'bbbbbbbbbbbbbbbb', '0000-00-00 00:00:00', 7, 0, NULL, NULL, 1, 1, ''),
+(9, 1, '4444444444', '', '', '', 'fffffffffff', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 1, 1, ''),
+(10, 1, 'ddd', '', '', '', 'adfasdfsss', '2013-06-14 13:11:45', 3, 0, NULL, NULL, 1, 1, ''),
+(11, 1, '大家好', '', '', '', '大家好', '2013-06-15 05:03:08', 6, 0, NULL, NULL, 1, 1, ''),
+(13, 1, '今天二中升旗时，学校的领导说：我们二中初三年有个', '', '', '', '今天二中升旗时，学校的领导说：我们二中初三年有个', '0000-00-00 00:00:00', 2, 0, NULL, NULL, 1, 1, ''),
+(14, 1, '麻麻说，冬天到了要我穿UGG出门！', '', '', '', '麻麻说，冬天到了要我穿UGG出门！', '0000-00-00 00:00:00', 0, 0, NULL, NULL, 1, 1, ''),
+(15, 1, '看到今天下午两男一女要上太空的新闻', '', '', '', '看到今天下午两男一女要上太空的新闻', '0000-00-00 00:00:00', 4, 0, 0, 0, 1, 1, ''),
+(21, 1, 'aasdf', '', '', '', 'asdfasfd', '0000-00-00 00:00:00', 3, 0, 0, 0, 1, 1, ''),
+(23, 1, '小时候有次去发小家玩，目睹了他和他妈', '', '', '', '转\r\n小时候有次去发小家玩，目睹了他和他妈吵架，吵着吵着发小扑通一声给他妈跪下了，边磕头边说“妈，我走了！”他妈就冲过来抱着他，俩人痛哭流涕。我小小的心灵被森森震撼了：原来可以这样。。时光荏苒，岁月如梭，过了几天，我妈和我也吵架了，正不可开交的时候，突然我灵光一闪，扑通也跪下了，效仿发小来了这么一出，然后，我妈拿着扫帚冲过来：滚！你给我滚！！', '0000-00-00 00:00:00', 1, 0, 0, 0, 1, 1, ''),
+(25, 1, 'adsfasdfasdf', '', '', '', 'asdffds', '0000-00-00 00:00:00', 0, 0, 0, 0, 1, 1, ''),
+(26, 1, 'sdafasfd', '', '', '', 'ssss', '0000-00-00 00:00:00', 0, 0, 0, 0, 1, 1, ''),
+(27, 1, '360真是无耻之徒啊', '', '', '', '有图有真像\r\n\r\n1、当卸载360的时候，卸载完成会弹出一个网页，让你填写原因。这个本不要紧，无耻之处在于如果弹出的这个网页你没有提交或者是这个网页还打开着，在windows的卸载面板里面都不能进行其他操作，必须要提交那个弹出的网页或者直接关闭了才可以进行其他的操作。这个没有截图，主要是因为还可以忍受。\r\n\r\n2、360软件管家独立版\r\n\r\n这个就是彻彻底底的流氓了,', '0000-00-00 00:00:00', 0, 0, 0, 0, 1, 1, ''),
+(30, 1, 'django实例：创建你的第一个应用投票系统（4）前台页面', '', '', '', '现在已经可以在后台管理投票了，现在就差怎么在前台显示和如何投票了\r\n1、index：首先第一个要有首页，用来显示所有的投票\r\n2、detail：详细信息页面，用来显示一个投票及相应的选项\r\n3、results：结果页面，用来查看一个投票的结果\r\n以及一个投票的操作\r\n\r\n在polls/views.py 页面添加如下代码', '2013-06-12 00:58:33', 1, 0, 0, 0, 1, 1, ''),
+(31, 1, 'python 三元表达式', '', '', '', '在编程中我也一直这么用了，直到有一天发现了一个有趣的技巧，那就是and-or技巧，利用条件判断的优先特性来实现三元条件判断，比如P∧Q，在Python中如果P为假，那么Python将不会继续执行Q，而直接判定整个表达式为假（P值），当然如果P为真，那就还要继续执行Q来决定整个表达式值；同样的P∨Q，如果P为真，那么就不会继续执行Q了…\r\n其实很多编程语言在逻辑判断中都应用了这套机制，目前我接触下来的貌似VB/VBScript可能不是这么做的。有了这套机制除了在if判断中提高效率外，我们还可以额外发掘一些有趣的功能，比如下面的PHP代码：', '2013-06-12 01:30:23', 2, 0, 0, 0, 1, 1, 'admin'),
+(32, 3, 'python 三元表达式', '', 'dss ddd', '', '这段代码获取的是event，假如没有给getEvent传入值（即e为undefined），或者e为NULL（两者在JavaScript条件中均代表False），e = e || window.event表达式将会把window.event赋值给e，否则e为Object对象，原表达式会蜕化为e = e赋值，也就是没有改变什么。\r\n好了，扯了这么多，稍稍有些偏题了，下面继续聊Python的and-or技巧，可以这么说，这个技巧也是利用了逻辑判断的特殊性，貌似在真正的三元表达式if else没有出来的时候其就一直在扮演三元表达式的角色，其原型是condition and true_part or false_part，下面举几个例子：', '2013-06-12 01:31:32', 2, 0, 0, 0, 1, 1, 'admin'),
+(33, 1, 'Python 字符串操作（截取/替换/查找/分割）', '', '', '', 'Python 截取字符串使用 变量[头下标:尾下标]，就可以截取相应的字符串，其中下标是从0开始算起，可以是正数或负数，下标可以为空表示取到头或尾。\r\n# 例1：字符串截取str = ''12345678''print str[0:1]>> 1 # 输出str位置0开始到位置1以前的字符print str[1:6] >> 23456 # 输出str位置1开始到位置6以前的字符num = 18str = ''0000'' + str(num) # 合并字符串print str[-5:] # 输出字符串右5位>> 00018\r\nPython 替换字符串使用 变量.replace("被替换的内容"，"替换后的内容"[，次数])，替换次数可以为空，即表示替换所有。要注意的是使用replace替换字符串后仅为临时变量，需重新赋值才能保存。\r\n# 例2：字符串替换str = ''akakak''str = str.replace(''k'','' 8'') # 将字符串里的k全部替换为8print str>> ''a8a8a8'' # 输出结果\r\nPython 查找字符串使用 变量.find("要查找的内容"[，开始位置，结束位置])，开始位置和结束位置，表示要查找的范围，为空则表示查找所有。查找到后会返回位置，位置从0开始算，如果每找到则返回-1。\r\n# 例3：字符串查找str = ''a,hello''print str.find(''hello'') # 在字符串str里查找字符串hello>> 2 # 输出结果\r\nPython 分割字符串使用 变量.split("分割标示符号"[分割次数])，分割次数表示分割最大次数，为空则分割所有。\r\n例4：字符分割str = ''a,b,c,d''strlist = str.split('','') # 用逗号分割str字符串，并保存到列表for value in strlist: # 循环输出列表值 print value>> a # 输出结果>> b>> c>> d', '2013-06-12 01:33:14', 2, 0, 0, 0, 1, 1, 'admin'),
+(34, 1, 'Python 字符串操作（截取/替换/查找/分割）', '', '', 'Python 截取字符串使用 变量[头下标:尾下标]，就可以截取相应的字符串，其中下标是从0开始算起，可以是正数或负数，下标可以为空表示取到头或尾。\r\n# 例1', 'Python 截取字符串使用 变量[头下标:尾下标]，就可以截取相应的字符串，其中下标是从0开始算起，可以是正数或负数，下标可以为空表示取到头或尾。\r\n# 例1：字符串截取str = ''12345678''print str[0:1]>> 1 # 输出str位置0开始到位置1以前的字符print str[1:6] >> 23456 # 输出str位置1开始到位置6以前的字符num = 18str = ''0000'' + str(num) # 合并字符串print str[-5:] # 输出字符串右5位>> 00018\r\nPython 替换字符串使用 变量.replace("被替换的内容"，"替换后的内容"[，次数])，替换次数可以为空，即表示替换所有。要注意的是使用replace替换字符串后仅为临时变量，需重新赋值才能保存。\r\n# 例2：字符串替换str = ''akakak''str = str.replace(''k'','' 8'') # 将字符串里的k全部替换为8print str>> ''a8a8a8'' # 输出结果\r\nPython 查找字符串使用 变量.find("要查找的内容"[，开始位置，结束位置])，开始位置和结束位置，表示要查找的范围，为空则表示查找所有。查找到后会返回位置，位置从0开始算，如果每找到则返回-1。\r\n# 例3：字符串查找str = ''a,hello''print str.find(''hello'') # 在字符串str里查找字符串hello>> 2 # 输出结果\r\nPython 分割字符串使用 变量.split("分割标示符号"[分割次数])，分割次数表示分割最大次数，为空则分割所有。\r\n例4：字符分割str = ''a,b,c,d''strlist = str.split('','') # 用逗号分割str字符串，并保存到列表for value in strlist: # 循环输出列表值 print value>> a # 输出结果>> b>> c>> d', '2013-06-12 01:43:55', 15, 0, 0, 0, 1, 1, 'admin'),
+(35, 1, 'asfd', '', '', '', 'asfd', '2013-06-12 02:39:14', 3, 0, 0, 0, 1, 1, 'admin'),
+(38, 2, 'python 中的三元表达式（三目运算符）', '', '', 'python中的三目运算符不像其他语言\r\n其他的一般都是\r\n\r\n判定条件?为真时的结果:为假时的结果\r\n \r\n\r\n如\r\n\r\nresult=5>3?1:0\r\n \r\n\r\n这个输出1，但没有什么意义，仅仅是一个例子。\r\n而在python中的格式为\r\n\r\n为真时的结果 if 判定条件 else 为假时的结果  \r\n \r\n\r\n还是上面的例子\r\n\r\n1 if 5>3 else 0\r\n \r\n\r\n是先输出结果，再判定条件\r\n输出1，如果5大于3，否则输出0', 'python中的三目运算符不像其他语言\r\n其他的一般都是\r\n\r\n判定条件?为真时的结果:为假时的结果\r\n \r\n\r\n如\r\n\r\nresult=5>3?1:0\r\n \r\n\r\n这个输出1，但没有什么意义，仅仅是一个例子。\r\n而在python中的格式为\r\n\r\n为真时的结果 if 判定条件 else 为假时的结果  \r\n \r\n\r\n还是上面的例子\r\n\r\n1 if 5>3 else 0\r\n \r\n\r\n是先输出结果，再判定条件\r\n输出1，如果5大于3，否则输出0', '2013-06-12 09:40:34', 10, 0, 0, 0, 1, 1, ''),
+(39, 5, 'adfasfdsdf', '', '', 'asdfasfdasdf', 'asdfasfdasdf', '2013-06-13 13:37:25', 9, 0, 0, 0, 1, 1, ''),
+(41, 5, 'adfasfdsdf', '', '', 'd', 'sd', '2013-06-14 05:18:26', 5, 0, 0, 0, 1, 12, 'test'),
+(42, 5, 'asdf', '', '', 'd', 'asdfasdf', '2013-06-14 05:19:21', 2, 0, 0, 0, 1, 12, 'test'),
+(43, 5, 's', '', '', 'asd', 'asdf', '2013-06-14 05:19:35', 0, 0, 0, 0, 1, 12, 'test'),
+(44, 5, 's', '', '', 'asd', 'asdf', '2013-06-14 05:21:31', 0, 0, 0, 0, 1, 12, 'test'),
+(45, 5, 's', '', '', 'asd', 'asdf', '2013-06-14 05:21:44', 0, 0, 0, 0, 1, 12, 'test'),
+(46, 15, 'a', '', '', 'b', 'd', '2013-06-14 07:49:20', 2, 0, 0, 0, 1, 12, 'test'),
+(47, 16, 'asf', '', '', 'asfd', 'asfd', '2013-06-14 09:09:01', 1, 0, 0, 0, 1, 13, 'xiaoming'),
+(49, 16, 'Jexus vs IIS8 非绝对客观对比测试', '', '', '特别说明，如标题说的，如下测试并非绝对客观，仅仅是本人实际生产环境应用中的测试，给大家做个参考 O(∩_∩)O~\r\n\r\n \r\n\r\n\r\n \r\n\r\n单台HAProx', '特别说明，如标题说的，如下测试并非绝对客观，仅仅是本人实际生产环境应用中的测试，给大家做个参考 O(∩_∩)O~\r\n\r\n \r\n\r\n\r\n \r\n\r\n单台HAProxy 1.4.23（Ubuntu 12.04.2 LTS 64位 4核 512MB）做负载均衡\r\n\r\n两台Ubuntu 12.04.2 LTS 64位 4核 1GB，Mono 3.0.11，Jexus 5.3.1 开2 线程\r\n\r\n静态网页：\r\n\r\nwebbench -c 2000 -t 60 http://xxx.../Test.html\r\n\r\n第一轮：\r\n\r\nSpeed=409062 pages/min, 2754351 bytes/sec.\r\n\r\nRequests: 409062 susceed, 0 failed.\r\n\r\n第二轮：\r\n\r\nSpeed=411590 pages/min, 2769466 bytes/sec.\r\n\r\nRequests: 411590 susceed, 0 failed.\r\n\r\n第三轮：\r\n\r\nSpeed=408758 pages/min, 2752304 bytes/sec.\r\n\r\nRequests: 408758 susceed, 0 failed.\r\n\r\n \r\n\r\n动态页面：\r\n\r\nwebbench -c 2000 -t 60 http://xxx.../api/imageapi/jpg/404\r\n\r\n第一轮：\r\n\r\nSpeed=85647 pages/min, -16004347 bytes/sec.\r\n\r\nRequests: 85647 susceed, 0 failed.\r\n\r\n第二轮：\r\n\r\nSpeed=83603 pages/min, -17327404 bytes/sec.\r\n\r\nRequests: 83603 susceed, 0 failed.\r\n\r\n第三轮：\r\n\r\nSpeed=77596 pages/min, -21411556 bytes/sec.\r\n\r\nRequests: 77596 susceed, 0 failed.\r\n\r\n \r\n\r\n \r\n\r\n总结：静态输出方面，Jexus的性能不比IIS8差，甚至更好，动态解析方面是差一点（当中本身就有mono性能不及.net的关系，不过也差距不是很大；也有我冇优化使用Jexus的原因，Jexus最大线程可以开4个，我只使用了2个，也冇具体优化Linux配置；还有我负载均衡优化的不足，小弟我配置负载均衡还是初哥），但应用在生产环境完全够用，稳定性也很不错（虽然测试期间有宕机的情况，仅此一次，也重现不了，但毕竟是出现过一次，日后随版本更新，更多用户使用反馈优化，必然会更加稳定），加上使用相同的配置，组成群集的话，性能上已经比同配置单台IIS8差不多，高低难分，而且更稳定，实际生产应用还是很值得信赖 \\(^o^)/~。\r\n\r\n \r\n\r\n结语：非常感谢 宇内流云 带给我们这样一个高性能的服务器！！！为廉价的部署方案开辟了一条光明大道！！！非常感谢！！！', '2013-06-14 09:11:21', 14, 0, 0, 0, 1, 13, 'xiaoming'),
+(50, 18, '浅谈C# 多态的魅力（虚方法，抽象，接口实现）', '', '', '言：我们都知道面向对象的三大特性：封装，继承，多态。封装和继承对于初学者而言比较好理解，但要理解多态，尤其是深入理解，初学者往往存在有很多困惑，为什么这样就可以', '言：我们都知道面向对象的三大特性：封装，继承，多态。封装和继承对于初学者而言比较好理解，但要理解多态，尤其是深入理解，初学者往往存在有很多困惑，为什么这样就可以？有时候感觉很不可思议，由此，面向对象的魅力体现了出来，那就是多态，多态用的好，可以提高程序的扩展性。常用的设计模式，比如简单工厂设计模式，核心就是多态。\r\n\r\n其实多态就是：允许将子类类型的指针赋值给父类类型的指针。也就是同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向基类的指针，来调用实现派生类中的方法。如果这边不理解可以先放一放，先看下面的事例，看完之后再来理解这句话，就很容易懂了。\r\n理解多态之前首先要对面向对象的里氏替换原则和开放封闭原则有所了解。\r\n\r\n里氏替换原则（Liskov Substitution Principle）：派生类（子类）对象能够替换其基类（超类）对象被使用。通俗一点的理解就是“子类是父类”，举个例子，“男人是人，人不一定是男人”，当需要一个父类类型的对象的时候可以给一个子类类型的对象；当需要一个子类类型对象的时候给一个父类类型对象是不可以的！\r\n开放封闭原则（Open Closed Principle）：封装变化、降低耦合，软件实体应该是可扩展，而不可修改的。也就是说，对扩展是开放的，而对修改是封闭的。因此，开放封闭原则主要体现在两个方面：对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对类进行任何修改。\r\n\r\n对这两个原则有一定了解之后就能更好的理解多态。\r\n\r\n首先，我们先来看下怎样用虚方法实现多态。\r\n\r\n我们都知道，喜鹊（Magpie）、老鹰（Eagle）、企鹅（Penguin）都是属于鸟类，我们可以根据这三者的共有特性提取出鸟类（Bird）做为父类，喜鹊喜欢吃虫子，老鹰喜欢吃肉，企鹅喜欢吃鱼。\r\n\r\n创建基类Bird如下，添加一个虚方法Eat():', '2013-06-14 12:43:04', 31, 0, 0, 0, 1, 14, 'jiange'),
+(51, 19, '浅谈C# 多态的魅力（虚方法，抽象，接口实现）', '', '', '前言：我们都知道面向对象的三大特性：封装，继承，多态。封装和继承对于初学者而言比较好理解，但要理解多态，尤其是深入理解，初学者往往存在有很多困惑，为什么这样就可', '前言：我们都知道面向对象的三大特性：封装，继承，多态。封装和继承对于初学者而言比较好理解，但要理解多态，尤其是深入理解，初学者往往存在有很多困惑，为什么这样就可以？有时候感觉很不可思议，由此，面向对象的魅力体现了出来，那就是多态，多态用的好，可以提高程序的扩展性。常用的设计模式，比如简单工厂设计模式，核心就是多态。\r\n\r\n其实多态就是：允许将子类类型的指针赋值给父类类型的指针。也就是同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向基类的指针，来调用实现派生类中的方法。如果这边不理解可以先放一放，先看下面的事例，看完之后再来理解这句话，就很容易懂了。\r\n理解多态之前首先要对面向对象的里氏替换原则和开放封闭原则有所了解。\r\n\r\n里氏替换原则（Liskov Substitution Principle）：派生类（子类）对象能够替换其基类（超类）对象被使用。通俗一点的理解就是“子类是父类”，举个例子，“男人是人，人不一定是男人”，当需要一个父类类型的对象的时候可以给一个子类类型的对象；当需要一个子类类型对象的时候给一个父类类型对象是不可以的！\r\n开放封闭原则（Open Closed Principle）：封装变化、降低耦合，软件实体应该是可扩展，而不可修改的。也就是说，对扩展是开放的，而对修改是封闭的。因此，开放封闭原则主要体现在两个方面：对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对类进行任何修改。\r\n\r\n对这两个原则有一定了解之后就能更好的理解多态。\r\n\r\n首先，我们先来看下怎样用虚方法实现多态。', '2013-06-14 13:17:45', 19, 0, 0, 0, 1, 15, 'wangjian'),
+(52, 19, 'asdf', '', '', 'asdf', 'asdf', '2013-06-15 03:00:45', 1, 0, 0, 0, 1, 15, 'wangjian'),
+(53, 21, 'dssd', '', '', 'sdsd', 'ssssss', '2013-06-15 03:00:53', 4, 0, 0, 0, 1, 15, 'wangjian'),
+(54, 21, 'afd', '', '', 'dsd', 'sdfsdf', '2013-06-15 03:37:41', 4, 0, 0, 0, 1, 15, 'wangjian'),
+(55, 22, '视频: 真假包公2 何家劲，金超群，范鸿轩主演93版包青天', '', '', '视频: 真假包公2 何家劲，金超群，范鸿轩主演93版包青天', '视频: 真假包公2 何家劲，金超群，范鸿轩主演93版包青天', '2013-06-15 04:47:46', 14, 0, 0, 0, 1, 17, 'www'),
+(56, 22, 'asdf', '', '', 'sdfsfd', 'sssdds', '2013-06-15 04:58:43', 1, 0, 0, 0, 1, 17, 'www'),
+(58, 22, 'IOS7使用吐槽(抛弃拟物化您还能走多远.........)', '', '', '             使用iphone已有大半年的时间了,可以说我也算是一个合格的果粉了(为什么算是呢？文章最后告诉大家),花了一个多月的工资,在iphon', '             使用iphone已有大半年的时间了,可以说我也算是一个合格的果粉了(为什么算是呢？文章最后告诉大家),花了一个多月的工资,在iphone5国行还没上市的时候就入手了一部港行iphone5,当时那个激动呀(很早很早就想要一部iphone,因为觉得屏幕才3.5英寸,默默的等待iphone5的出现),这也就是我为什么连国行还没上市就入手了iphone5的原因,实在是等的太久太久了.............\r\n\r\n            上面貌似扯远了,还是来讲讲这让我不知道该如何形容的ios7吧！ 大家有没有和我一样,睁着快抬不起的眼皮一直等到WWDC 2013大会开始介绍ios7,当时有那么点小激动,不知道新的系统能给我们带来怎样的惊喜呢！ios7的确给我们带来很多全新的功能,第一眼看上去，有种小清新的赶脚！动态壁纸的支持,也让其增色不少,还要许多功能都还是很不错的(虽说这许多的功能都有抄袭之嫌),从发布介绍的来看,让我觉得ios7挺好的,可真正到了用户自己体验是否也是如此呢？\r\n\r\n            相信很多果粉和我一样,在看完发布会直接入睡,第二天一大早起来就网上到处找如何升级ios7,有一小部分人就开始赚钱了,因为WWDC 2013大会说这次发布的是开发者测试版,网上就流传了必须有开发者账号才能升级ios7,这样很多果粉直接失望了,大家就不约而同的想到了找开发者账号,市场经济就是如此,结果导致的就是淘宝上兜售的开发者账号就一下飙涨到了几百元一个！当然我也失望了,没过多久许多网站就贴出了已升级的ios7系统的文章,最后就是不需要开发者账号,只需要下载ios7的固件就可以升级！\r\n\r\n            作为一个算是合格的果粉来说,我当然也不想落后,果断下载ios7固件,然后按照教程直接升级（升级前还是有些犹豫的,怕搞成白苹果,那将是很大一笔损失呢,可是经不住诱惑呀,果断还是升了,悲剧也从此刻开始了）！其他的咱都先不讲,大家都知道iphone上的很多的软件升级后,不仅没有让我们的体验觉得更好,反而觉得更差了,有木有？举个例子来讲：有些软件我们刚开始使用的时候没有广告之类的乱七八糟的附加东西,可是升级后却出现了大量的广告和许多用户根本不需要的东西,有的甚至影响了我们的正常使用,但是升级的说明上根本不会提这些,很多用户软件升级之后都会有一种被骗的感觉,这让人非常的反感！  而我们“伟大”的ios7竟然提供了再不通知用户的情况下,后台自动升级软件的功能！而我悲剧的是iphone把很多我根本不想升级的软件都一一给我自动开始升级了！当时都有点要崩溃的感觉了！还好最后发现在设置里有可以让用户自己选择是否自动升级的功能！但是我认为这个自动升级的功能应该默认不开启，不然会很坑爹的！\r\n\r\n           接下来我们来讲讲ios7的界面,扁平化设计,说实话,为什么喜欢iphone，虽然它提供给我们的权限很少,有时候甚至感觉它不是自己的东西,因为很多我们想控制的却控制不了,可它依然让我们喜欢,因为它拥有良好的用户体验以及华丽的视觉效果,华丽的视觉效果靠的是什么？那就是拟物化设计,可惜ios7却抛弃了这一苹果独特的东西.却追求了扁平化效果,不可否认,扁平化设计的好处很多,可对于苹果来说，这不是一个好的选择！大家知道我升级完ios7,拿着iphone使用的感觉是什么吗？一部运行着Android系统的山寨苹果机！\r\n\r\n           再使用了一天之后实在是受不了啦,果断刷回了ios6.1.4,回到了我喜爱的拟物化系统！还好我在升级之前有备份,我的软件又恢复到了之前的版本！在备份方面,苹果做的还是很不错的！大家如果有这方面的心得也可以和我交流哦！以上就是我对使用ios7的一些感想！\r\n\r\n           现在来讲讲为什么我不算是一个合格的果粉！我的第一部手机就是一个有JAVA虚拟机的手机,可以安装QQ啊,游戏之类的软件,那时的我虽然很好奇,但是那会还不懂编程也就不了了之了！第二部手机就是诺基亚5230,当年的街机！买它第一是便宜(当时学生,没钱呀,寒假在网吧兼职网管赚钱买的!)，第二就是想体验塞班的操作系统！这时已经对编程有所了解,可惜还没入门，依然是懵懂！第三部手机就是Android系统的中兴U880手机,又是一部便宜手机（因为一直想等着买iphone5），当时买它主要就是想体验Android系统！这时的我已经成为一名程序猿(虽然自己是个码农,但是一直不想以码农称呼自己,因为一直告诫自己不要成为一个码农),可惜我搞的是.NET,对着Android系统也只有体验的份了！这样一来就只剩下ios系统和wp系统没有了,之后就入手了现在的用的iphone,下一部手机应该就是wp8系统的手机啦！故说自己是一个合格的果粉，真的算不上,呵呵！所以作为一名编程人员,我对各个操作系统有着很深的兴趣,都想去体验,去刷机之类的！\r\n\r\n          接下来的时代应该是移动互联网的时代！三大移动操作系统ISO,Android,window phone,大家有没有跟我一样的犹豫,不知道目前该走哪条路线？请园子内的各位提供一下建议呗！先谢谢喽！', '2013-06-15 05:00:40', 14, 0, 0, 0, 1, 17, 'www'),
+(59, 22, 'IOS7使用吐槽(抛弃拟物化您还能走多远.........)', '', '', '             使用iphone已有大半年的时间了,可以说我也算是一个合格的果粉了(为什么算是呢？文章最后告诉大家),花了一个多月的工资,在iphone5国行还没上市的时候就入手了一部港行iphone5,当时那个激动呀(很早很早就想要一部iphone,因为觉得屏幕才3.5英寸,默默的等待iphone5的出现),这也就是我为什么连国行还没上市就入手了iphone5的原因,实在是等的太久太久', '             使用iphone已有大半年的时间了,可以说我也算是一个合格的果粉了(为什么算是呢？文章最后告诉大家),花了一个多月的工资,在iphone5国行还没上市的时候就入手了一部港行iphone5,当时那个激动呀(很早很早就想要一部iphone,因为觉得屏幕才3.5英寸,默默的等待iphone5的出现),这也就是我为什么连国行还没上市就入手了iphone5的原因,实在是等的太久太久了.............\r\n\r\n            上面貌似扯远了,还是来讲讲这让我不知道该如何形容的ios7吧！ 大家有没有和我一样,睁着快抬不起的眼皮一直等到WWDC 2013大会开始介绍ios7,当时有那么点小激动,不知道新的系统能给我们带来怎样的惊喜呢！ios7的确给我们带来很多全新的功能,第一眼看上去，有种小清新的赶脚！动态壁纸的支持,也让其增色不少,还要许多功能都还是很不错的(虽说这许多的功能都有抄袭之嫌),从发布介绍的来看,让我觉得ios7挺好的,可真正到了用户自己体验是否也是如此呢？\r\n\r\n            相信很多果粉和我一样,在看完发布会直接入睡,第二天一大早起来就网上到处找如何升级ios7,有一小部分人就开始赚钱了,因为WWDC 2013大会说这次发布的是开发者测试版,网上就流传了必须有开发者账号才能升级ios7,这样很多果粉直接失望了,大家就不约而同的想到了找开发者账号,市场经济就是如此,结果导致的就是淘宝上兜售的开发者账号就一下飙涨到了几百元一个！当然我也失望了,没过多久许多网站就贴出了已升级的ios7系统的文章,最后就是不需要开发者账号,只需要下载ios7的固件就可以升级！\r\n\r\n            作为一个算是合格的果粉来说,我当然也不想落后,果断下载ios7固件,然后按照教程直接升级（升级前还是有些犹豫的,怕搞成白苹果,那将是很大一笔损失呢,可是经不住诱惑呀,果断还是升了,悲剧也从此刻开始了）！其他的咱都先不讲,大家都知道iphone上的很多的软件升级后,不仅没有让我们的体验觉得更好,反而觉得更差了,有木有？举个例子来讲：有些软件我们刚开始使用的时候没有广告之类的乱七八糟的附加东西,可是升级后却出现了大量的广告和许多用户根本不需要的东西,有的甚至影响了我们的正常使用,但是升级的说明上根本不会提这些,很多用户软件升级之后都会有一种被骗的感觉,这让人非常的反感！  而我们“伟大”的ios7竟然提供了再不通知用户的情况下,后台自动升级软件的功能！而我悲剧的是iphone把很多我根本不想升级的软件都一一给我自动开始升级了！当时都有点要崩溃的感觉了！还好最后发现在设置里有可以让用户自己选择是否自动升级的功能！但是我认为这个自动升级的功能应该默认不开启，不然会很坑爹的！\r\n\r\n           接下来我们来讲讲ios7的界面,扁平化设计,说实话,为什么喜欢iphone，虽然它提供给我们的权限很少,有时候甚至感觉它不是自己的东西,因为很多我们想控制的却控制不了,可它依然让我们喜欢,因为它拥有良好的用户体验以及华丽的视觉效果,华丽的视觉效果靠的是什么？那就是拟物化设计,可惜ios7却抛弃了这一苹果独特的东西.却追求了扁平化效果,不可否认,扁平化设计的好处很多,可对于苹果来说，这不是一个好的选择！大家知道我升级完ios7,拿着iphone使用的感觉是什么吗？一部运行着Android系统的山寨苹果机！\r\n\r\n           再使用了一天之后实在是受不了啦,果断刷回了ios6.1.4,回到了我喜爱的拟物化系统！还好我在升级之前有备份,我的软件又恢复到了之前的版本！在备份方面,苹果做的还是很不错的！大家如果有这方面的心得也可以和我交流哦！以上就是我对使用ios7的一些感想！\r\n\r\n           现在来讲讲为什么我不算是一个合格的果粉！我的第一部手机就是一个有JAVA虚拟机的手机,可以安装QQ啊,游戏之类的软件,那时的我虽然很好奇,但是那会还不懂编程也就不了了之了！第二部手机就是诺基亚5230,当年的街机！买它第一是便宜(当时学生,没钱呀,寒假在网吧兼职网管赚钱买的!)，第二就是想体验塞班的操作系统！这时已经对编程有所了解,可惜还没入门，依然是懵懂！第三部手机就是Android系统的中兴U880手机,又是一部便宜手机（因为一直想等着买iphone5），当时买它主要就是想体验Android系统！这时的我已经成为一名程序猿(虽然自己是个码农,但是一直不想以码农称呼自己,因为一直告诫自己不要成为一个码农),可惜我搞的是.NET,对着Android系统也只有体验的份了！这样一来就只剩下ios系统和wp系统没有了,之后就入手了现在的用的iphone,下一部手机应该就是wp8系统的手机啦！故说自己是一个合格的果粉，真的算不上,呵呵！所以作为一名编程人员,我对各个操作系统有着很深的兴趣,都想去体验,去刷机之类的！\r\n\r\n          接下来的时代应该是移动互联网的时代！三大移动操作系统ISO,Android,window phone,大家有没有跟我一样的犹豫,不知道目前该走哪条路线？请园子内的各位提供一下建议呗！先谢谢喽！', '2013-06-15 05:02:54', 14, 0, 0, 0, 1, 17, 'www'),
+(60, 23, 'asfdasfd', '', '', '诺登曝光“棱镜”等秘密情报监视项目，将<span style="CURSOR: hand; BORDER-BOTTOM: 0px dotted; COLOR: #0084d8; TEXT-DECORATIO', '<p style="text-align:justify; MARGIN: 0px 3px 15px; TEXT-JUSTIFY: distribute; TEXT-INDENT: 30px">诺登曝光“棱镜”等秘密情报监视项目，将<span style="CURSOR: hand; BORDER-BOTTOM: 0px dotted; COLOR: #0084d8; TEXT-DECORATION: underline" name="HL_TAG">美国政府</span>的争议做法置于风口浪尖。面对国内外越来越大质疑声，美国政府以及部分政界人士四面出击，试图通过各种手段消除“棱镜”争议带来的消极影响。</p><p><br/></p><p style="text-align:justify; MARGIN: 0px 3px 15px; TEXT-JUSTIFY: distribute; TEXT-INDENT: 30px"><strong>第1招</strong></p><p><br/></p><p style="text-align:justify; MARGIN: 0px 3px 15px; TEXT-JUSTIFY: distribute; TEXT-INDENT: 30px"><strong>辩实效接连强调监视<span style="CURSOR: hand; BORDER-BOTTOM: 0px dotted; COLOR: #0084d8; TEXT-DECORATION: underline" name="HL_TAG">项目</span>效果</strong></p><p><br/></p><p style="text-align:justify; MARGIN: 0px 3px 15px; TEXT-JUSTIFY: distribute; TEXT-INDENT: 30px">监视项目曝光，不仅引来法律制裁泄密者的呼声</p><p><br/></p>', '2013-06-15 09:04:15', 5, 0, 0, 0, 1, 18, 'wugui'),
+(61, 23, 'Django过滤HTML标签', '', '', '上回讲解了《Django 过滤Html指定标签》，过滤的的办法使用了Django的内置的fliter removetags函数，这个有它适合的使用场合；但如果想过滤由Web编辑器产生的HTML标签，用它就显得过于臃肿，效率有点低了。因为你要找出全部的html标签，作为参数传进函数，这么一来可能几十个html标签作为参数一起传到removetagd函数里，显然不是Pythonic的做法。今天利用正则', '<p style="; ; ; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 21px; color: rgb(51, 51, 51); orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(238, 238, 221);">上回讲解了《<a href="http://2goo.info/blog/panjj/Django/2010/02/25/18" target="_blank" style="color: rgb(118, 160, 176);">Django 过滤Html指定标签</a>》，过滤的的办法使用了Django的内置的fliter removetags函数，这个有它适合的使用场合；但如果想过滤由Web编辑器产生的HTML标签，用它就显得过于臃肿，效率有点低了。因为你要找出全部的html标签，作为参数传进函数，这么一来可能几十个html标签作为参数一起传到removetagd函数里，显然不是Pythonic的做法。今天利用正则表达式自定义个函数，旨在代码的简洁性和性能优化方面，将html标签过滤了，所以正则表达式可能没有想周全，但是过滤点Web编辑器产生的最常用的标签是够用了。废话少说了，看函数实现：</p><p>&nbsp;</p><p>import re</p><p>def remove_html_tags(str_html):</p><p>&nbsp;&nbsp; &nbsp;return&nbsp;re.compile(&#39;&lt;/?\\w+[^&gt;]*&gt;&#39;).sub(&#39;&#39;,str_html)</p><p>&nbsp;&nbsp; &nbsp;</p><p>熟悉正则的同学，很清楚该函数过滤的只是&lt;&gt;和里面的字符；因为html正好大都由这些标签组成的，一般情况下，过滤掉了这些标签，html就只剩下文字了。适合的场合可能是过滤文章的正文，这些正文都是使用Web编辑器处理过的字符。若你想把一个完整的html页面，过滤掉html标签，那可能就不适合了，因为完整的html页面源码，包含有CDATA link script注释等等这些零碎的东西，短短的&lt;/?\\w+[^&gt;]*&gt;正则表达式没有这么强大的功能；希望抛砖引玉吧..</p><p>&nbsp;</p><p>在Django的模板中怎么使用该函数呢？下面附带简洁自定义我们的filter。在app中建立一个templatetags文件夹，在文件夹里建立一个空的__init__.py和base_filter.py文件，把下面的代码copy上去：</p><p>&nbsp;</p><p>#coding=utf-8</p><p>import re</p><p>from django import template</p><p>&nbsp;</p><p>register = template.Library()</p><p>&nbsp;</p><p>@register.filter</p><p>def remove_html_tags(str_html):</p><p>&nbsp;&nbsp; &nbsp;return&nbsp;re.compile(&#39;&lt;/?\\w+[^&gt;]*&gt;&#39;).sub(&#39;&#39;,str_html)</p><p>&nbsp;</p><p>然后在模板中引用我们自定义的filter：</p><p>{%load&nbsp;base_filter%}</p><p>&nbsp;</p><p>最后使用该filter即可，比如把资讯的正文，过滤掉html，转义后截取一部分出来，照猫画虎吧：</p><p>{{news.content|remove_html_tags|safe|escape|truncatewords_html:12}}</p><p>2012年补充：</p><h3 style="margin-top: 1.4em; font-family: &#39;Trebuchet MS&#39;, sans-serif; font-size: 15px; margin-bottom: 0.2em; color: rgb(9, 46, 32); margin-left: 0px; margin-right: 0px; line-height: 16px; ">striptags</h3><p>随着Django 1.3的修正，其实它自身带有一个标签函数实现了以上的功能，具体参考：<a href="https://docs.djangoproject.com/en/1.3/ref/templates/builtins/#striptags" style="color: rgb(118, 160, 176);">striptags</a>&nbsp;吧！</p><p>&nbsp;</p><p>（完）</p><p><br/></p>', '2013-06-15 09:28:45', 9, 0, 0, 0, 0, 18, 'wugui'),
+(62, 23, '北大裸奔男子抱充气娃娃裸奔 博取眼球的炒作不可取[组图]', '', '', '核心提示：北大裸奔男子抱充气娃娃裸奔 博取眼球的炒作不可取[组图]5月14日下午，北大未名湖突然出现两个内拿着吉他和充气娃娃裸奔的年轻男子，仅穿红色丁字裤，胸部还写有黑色毛笔字。北大裸奔男子抱充气娃娃裸奔 博取眼球的炒作不可取[组图]5月14日下午，北大未名湖突然出现两个内拿着吉他和充气娃娃裸奔的年轻男子，仅穿红色丁字裤，胸部还写有黑色毛笔字。来源：人民网原标题;奇葩！两男子穿喷血丁字裤抱充气娃娃', '<p id="articleDigest" class="articleFontSize_medium" style="; ; border: 2px solid rgb(207, 214, 229); outline: 0px; vertical-align: baseline; background-color: rgb(255, 255, 255); line-height: 1.8; color: rgb(32, 32, 32); font-family: 宋体, serif; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">核心提示：</strong>北大裸奔男子抱充气娃娃裸奔 博取眼球的炒作不可取[组图]5月14日下午，北大未名湖突然出现两个内拿着吉他和充气娃娃裸奔的年轻男子，仅穿红色丁字裤，胸部还写有黑色毛笔字。</p><p style="; ; ; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent; text-indent: 2em;">北大裸奔男子抱充气娃娃裸奔 博取眼球的炒作不可取[组图]</p><p style="; ; ; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent; text-indent: 2em;">5月14日下午，北大未名湖突然出现两个内拿着吉他和充气娃娃裸奔的年轻男子，仅穿红色丁字裤，胸部还写有黑色毛笔字。</p><p style="; ; ; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent; text-indent: 2em;">来源：<a href="http://finance.people.com.cn/BIG5/n/2013/0615/c66323-21850457-6.html" target="_blank" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent; color: rgb(48, 96, 191); text-decoration: none;">人民网</a></p><p style="; ; ; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent; text-indent: 2em;">原标题;奇葩！两男子穿喷血丁字裤抱充气娃娃北大裸奔（组图）</p><p>asdfasdf</p>', '2013-06-15 09:32:10', 28, 0, 0, 0, 1, 18, 'wugui');
+INSERT INTO `tblog_article` (`id`, `category_id`, `title`, `pic`, `tags`, `summary`, `content`, `createTime`, `views`, `comments`, `goods`, `bads`, `status`, `user_id`, `user_name`) VALUES
+(63, 24, 'Java并发编程之——Lock(重入锁，读写锁)及Condition示例', '', '', '　　在JDK5的并发包中有一个子包为java.concurrent.locks，它下面定义了三个接口Lock,ReadWriteLock,Condition,分别为重入锁，读写锁，锁条件判断LOCK:Lock与java关键字（synchronized）具有相同的功能，但它更加灵活。ReentrantLock作为Lock接口的实现类，被作为Java语言中synchronized功能的替代，它们具有相', '<p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">　　在JDK5的并发包中有一个子包为java.concurrent.locks，它下面定义了三个接口Lock,ReadWriteLock,Condition,分别为重入锁，读写锁，锁条件判断</p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="color: rgb(255, 0, 0);"><strong>LOCK:</strong></span></p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">Lock与java关键字（synchronized）具有相同的功能，但它更加灵活。ReentrantLock作为Lock接口的实现类，被作为Java语言中synchronized功能的替代，它们具有相同的内存意义，相同的锁定，但在争用条件下却有更好的性能，此为它还有synchronized没有提供的其它特性。但就实际应用来说，由于内部锁是内置于Java虚拟机中的，它能够进行优化，因此未来的性能改进可能更倾向于内部锁，而不是重入锁。综上所述，除非你的应用程序需要发在Java 5.0上，或者需要使用重入锁的可伸缩性，否则就应该选择内部锁。</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">总之，ReentrantLock锁与Java内在锁相比有下面的特点：</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">1）ReentrantLock必须在 finally 块中释放锁，而使用synchronized同步，JVM 将确保锁会获得自动释放。</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">2）与目前的 synchronized 实现相比，争用下的 ReentrantLock 实现更具可伸缩性。</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">3）对于ReentrantLock ，可以有不止一个条件变量与它关联。（Condition后面会说到）</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">4）允许选择想要一个公平锁，还是一个不公平锁。(new ReentrantLock(false)非公平锁，非公平锁执行效率会更高)</p><p class="Default" style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">5）除非你对 Lock 的某个高级特性有明确的需要，或者有明确的证据表明在特定情况下，同步已经成为可伸缩性的瓶颈，否则还是应当继续使用synchronized。</p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">6）Lock 类只是普通的类，JVM 不知道具体哪个线程拥有 Lock 对象。而且，几乎每个开发人员都熟悉 synchronized，它可以在 JVM 的所有版本中工作。</p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><strong><span style="color: rgb(255, 0, 0);">Condition</span>:</strong></p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">类似于java中原来线程交互所用的wait,notify和notifyAll方法在新的并发包中基于重入锁机制引入了Condition接口，<code>Condition</code>&nbsp;将&nbsp;<code>Object</code>&nbsp;监视器方法（<a href="http://www.cnblogs.com/wn398/admin/" style="color: rgb(26, 139, 200); text-decoration: none; "><code>wait</code></a>、<a href="http://www.cnblogs.com/wn398/admin/" style="color: rgb(26, 139, 200); text-decoration: none; "><code>notify</code></a>&nbsp;和<a href="http://www.cnblogs.com/wn398/admin/" style="color: rgb(26, 139, 200); text-decoration: none; "><code>notifyAll</code></a>）分解成截然不同的对象，以便通过将这些对象与任意&nbsp;<a title="java.util.concurrent.locks 中的接口" href="http://www.cnblogs.com/wn398/admin/" style="color: rgb(26, 139, 200); text-decoration: none; "><code>Lock</code></a>&nbsp;实现组合使用，为每个对象提供多个等待 set（wait-set），就是多路等待。Condition 的方法与 wait 、notify 和 notifyAll 方法类似，分别命名为 await 、 signal和singalAll因为它们不能覆盖Object上的对应方法。</p><p style="line-height: 19px; ; color: rgb(75, 75, 75); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; orphans: 2; text-align: -webkit-auto; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">下面是一个多路条件等待按顺序执行的例子，给定一个0,按1，2，3，这样的顺序依次加一次，总共加10次，并输出每次加后的结果，模拟让多线程来做：</p><pre class="brush:java;toolbar:false">import&nbsp;java.util.concurrent.locks.Condition;\r\n&nbsp;import&nbsp;java.util.concurrent.locks.Lock;\r\n&nbsp;import&nbsp;java.util.concurrent.locks.ReentrantLock;\r\n&nbsp;\r\n&nbsp;public&nbsp;class&nbsp;ConditionTest&nbsp;{\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;args\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;10;&nbsp;i++)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Thread(new&nbsp;Runnable()&nbsp;{\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Test1().sub1();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}).start();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Thread(new&nbsp;Runnable()&nbsp;{\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Test1().sub2();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}).start();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Thread(new&nbsp;Runnable()&nbsp;{\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;Test1().sub3();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}).start();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;}\r\n&nbsp;\r\n&nbsp;class&nbsp;Test1&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;int&nbsp;i&nbsp;=&nbsp;0;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;int&nbsp;conNum&nbsp;=&nbsp;1;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//此处注意锁和condition也要定义成静态的，不然就有多把锁和condition了,相当于没加一样。\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Lock&nbsp;lock&nbsp;=&nbsp;new&nbsp;ReentrantLock(false);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Condition&nbsp;con1&nbsp;=&nbsp;lock.newCondition();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Condition&nbsp;con2&nbsp;=&nbsp;lock.newCondition();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;Condition&nbsp;con3&nbsp;=&nbsp;lock.newCondition();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;方法1对i进行加1\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;&nbsp;void&nbsp;sub1()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.lock();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(conNum&nbsp;!=&nbsp;1)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con1.await();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(i&nbsp;+&nbsp;&quot;,&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conNum&nbsp;=&nbsp;2;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con2.signal();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;finally&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.unlock();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;方法2对i加2\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;sub2()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.lock();\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(conNum&nbsp;!=&nbsp;2)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con2.await();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;2;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(i&nbsp;+&nbsp;&quot;,&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conNum&nbsp;=&nbsp;3;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con3.signal();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;finally&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.unlock();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;方法3对i加3;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;sub3()&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.lock();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(conNum&nbsp;!=&nbsp;3)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con3.await();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(InterruptedException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;3;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(i&nbsp;+&nbsp;&quot;,&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conNum&nbsp;=&nbsp;1;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con1.signal();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;finally&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock.unlock();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;\r\n&nbsp;}</pre><p><br/></p>', '2013-06-15 10:07:11', 21, 0, 0, 0, 1, 20, 'dao'),
+(64, 25, '(原)JMS PTP消息接收与发送', '', '', '在要搞懂ejb的消息驱动Bean，不可避免的要去研究研究JMS，先说说JMS。在RMI中，RMI技术允许两个分布在不同物理节点上的组件直接以方法调用方式进行通信，除此之外，还有CORA，WebService等，他们都可以实现大致相同的功能。但当面对规模和复杂度越来越高的系统时，这些技术存在如下不足：1) 同步通信：同步通信的意思是客户端调用服务器对象方法后，在服务器端方法返回之前，客户端程序无法向', '<p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">在要搞懂ejb的消息驱动Bean，不可避免的要去研究研究JMS，先说说JMS。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">在RMI中，RMI技术允许两个分布在不同物理节点上的组件直接以方法调用方式进行通信，除此之外，还有CORA，WebService等，他们都可以实现大致相同的功能。但当面对规模和复杂度越来越高的系统时，这些技术存在如下不足：</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">1) 同步通信</span></strong></span>：同步通信的意思是客户端调用服务器对象方法后，在服务器端方法返回之前，客户端程序无法向下走。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">2)客户端和服务器的生命周期耦合：</span></strong></span>客户端的调用代码和服务器端的被调用方法必须同步执行，而且这两段代码都必须可以正常执行，如果服务端的被调方法出现异常或者网络通信出现异常，客户端都将收到异常。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">3)点对点通信：</span></strong></span>客户端每次只能调用一个服务方法</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">为了解决上面的不足，出现一种面向消息的应用程序架构，于是JMS出来了。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">在这儿通过编程实现PTP模型的消息传递，当然不管哪种模型，都离不开消息服务器。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">因为基于weblogic12c服务器，而12的版本较之以前有了很大的改变，要想创建队列必须先创建JMS模块。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">第一步：创建持久话存储：</span></strong></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><img src="http://images.cnitblog.com/blog/532638/201306/15171900-fef9ffc5d67d4b62ba080574597d0eb5.png" alt="" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "/></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">点击服务---持久性存储---然后新建--选择文件存储</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">注意：存储文件的目录的必须提前存在，该服务器不会自动创建。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">第二步：创建JMS服务器：</span></strong></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><img src="http://images.cnitblog.com/blog/532638/201306/15172133-a5bdc1aee3924cd882beda3532a9dd37.png" alt="" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "/></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">点击服务----消息传送--JMS服务器--选择新建服务器</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">注意：在最后一步要求是否配置模块，其实没有必要选择是，因为我们要手动配置。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; color: rgb(255, 0, 0); "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">第三步：创建JMS模块：</strong></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><img src="http://images.cnitblog.com/blog/532638/201306/15172438-90d9d155dd9a471ab3adfc3f66c52a2b.jpg" alt="" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "/></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">点击服务----消息传送--JMS模块--选择新建模块</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">在此创建完成之后，我们可以添加队列：</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; font-size: 16px; "><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 1.5; color: rgb(255, 0, 0); ">第四步：添加队列：</span></strong></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><img src="http://images.cnitblog.com/blog/532638/201306/15172608-2c2cff9709714194ba570225b08e090e.jpg" alt="" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "/></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">点击进入创建的模块--点击创建</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">此时整个服务器搭建完成，接下来剩下的就是发送和接受消息了。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">发送消息：</p><p><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5;"><a title="复制代码" style="margin: 0px; padding: 0px; color: rgb(51, 51, 51); text-decoration: underline; border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin: 0px; padding: 0px; border: none !important;"/></a></span></p><pre data-find="_1" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &#39;Courier New&#39;;">public&nbsp;class&nbsp;SimpleSendMessage&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;sendMessage()&nbsp;throws&nbsp;JMSException,&nbsp;NamingException{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//定义Weblogic默认连接工厂的JNDI\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final&nbsp;String&nbsp;CONNECTION_FACTORY_JNDI&nbsp;=&nbsp;&quot;weblogic.jms.ConnectionFactory&quot;&nbsp;;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//获取JNDI服务所需的Cotext\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;ctx&nbsp;=&nbsp;getInitialContext();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//通过JNDI查找获取连接工厂\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConnectionFactory&nbsp;connFactory&nbsp;=&nbsp;(ConnectionFactory)ctx.lookup(CONNECTION_FACTORY_JNDI);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//连接工厂创建连接\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connection&nbsp;conn&nbsp;=&nbsp;connFactory.createConnection();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//通过JNDI查找获取消息目的\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destination&nbsp;dest&nbsp;=&nbsp;(Destination)ctx.lookup(&quot;MessageQueue&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//JMS连接创建JMS会话\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Session&nbsp;session&nbsp;=&nbsp;conn.createSession(false&nbsp;/*不是事物性会话*/\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;Session.AUTO_ACKNOWLEDGE);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//JMS会话创建消息生产者\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageProducer&nbsp;sender&nbsp;=&nbsp;session.createProducer(dest);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//设置消息生产者生产出来的消息的传递模式,有效时间\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sender.setDeliveryMode(DeliveryMode.PERSISTENT);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sender.setTimeToLive(20000);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//通过JMS会话创建一个文本消息\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextMessage&nbsp;msg&nbsp;=&nbsp;session.createTextMessage();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//设置消息内容\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg.setText(&quot;Hello&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//发送消息\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sender.send(msg);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//再次发送\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg.setText(&quot;Wellocome&nbsp;to&nbsp;JMS&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//关闭资源\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session.close();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conn.close();\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Context&nbsp;getInitialContext(){\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;ctx&nbsp;=&nbsp;null;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Properties&nbsp;props&nbsp;=&nbsp;new&nbsp;Properties();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;props.put(&nbsp;Context.INITIAL_CONTEXT_FACTORY,&nbsp;&quot;weblogic.jndi.WLInitialContextFactory&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;props.put(&nbsp;Context.PROVIDER_URL,&nbsp;&quot;t3://localhost:7001&quot;);&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx&nbsp;=&nbsp;new&nbsp;InitialContext(props);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(NamingException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ctx;\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[]){\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SimpleSendMessage&nbsp;mp&nbsp;=&nbsp;new&nbsp;SimpleSendMessage();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mp.sendMessage();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(JMSException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(NamingException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n\r\n}</pre><p><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5;"><a title="复制代码" style="margin: 0px; padding: 0px; color: rgb(51, 51, 51); text-decoration: underline; border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin: 0px; padding: 0px; border: none !important;"/></a></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">以上代码运行后什么也看不见，因为没有在控制台打印出东西，但是实际消息已经发送出去了。</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">下面写个接收消息的类：</p><p><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5;"><a title="复制代码" style="margin: 0px; padding: 0px; color: rgb(51, 51, 51); text-decoration: underline; border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin: 0px; padding: 0px; border: none !important;"/></a></span></p><pre data-find="_13" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &#39;Courier New&#39;;">public&nbsp;class&nbsp;SimpleRecMessage&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;receiveMessage()&nbsp;throws&nbsp;JMSException,&nbsp;NamingException{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//定义Weblogic默认连接工厂\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final&nbsp;String&nbsp;CONNECTION_FACTORY_JNDI&nbsp;=&nbsp;&quot;weblogic.jms.ConnectionFactory&quot;&nbsp;;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//获取JNDI服务所需的Cotext\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;ctx&nbsp;=&nbsp;getInitialContext();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//通过JNDI查找获取连接工厂\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConnectionFactory&nbsp;connFactory&nbsp;=&nbsp;(ConnectionFactory)ctx.lookup(CONNECTION_FACTORY_JNDI);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//通过JNDI查找获取消息目的\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destination&nbsp;dest&nbsp;=&nbsp;(Destination)ctx.lookup(&quot;MessageQueue&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//连接工厂创建连接\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connection&nbsp;conn&nbsp;=&nbsp;connFactory.createConnection();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//启动JMS连接让他开始传输JMS消息\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conn.start();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//JMS连接创建绘画\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Session&nbsp;session&nbsp;=&nbsp;conn.createSession(false&nbsp;/*不是事物性会话*/\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,&nbsp;Session.AUTO_ACKNOWLEDGE);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//JMS会话创建消息消费者\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageConsumer&nbsp;receiver&nbsp;=&nbsp;session.createConsumer(dest);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//同步接受消息，如果没有收到消息，该方法会阻塞线程\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextMessage&nbsp;msg&nbsp;=&nbsp;(TextMessage)receiver.receive();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(msg);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;同步接收到的消息：&quot;+&nbsp;msg.getText());\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//关闭资源\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session.close();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conn.close();\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Context&nbsp;getInitialContext(){\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;ctx&nbsp;=&nbsp;null;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Properties&nbsp;props&nbsp;=&nbsp;new&nbsp;Properties();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;props.put(&nbsp;Context.INITIAL_CONTEXT_FACTORY,&nbsp;&quot;weblogic.jndi.WLInitialContextFactory&quot;);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;props.put(&nbsp;Context.PROVIDER_URL,&nbsp;&quot;t3://localhost:7001&quot;);&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx&nbsp;=&nbsp;new&nbsp;InitialContext(props);\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(NamingException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ctx;\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;\r\n&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[]){\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SimpleRecMessage&nbsp;s&nbsp;=&nbsp;new&nbsp;SimpleRecMessage();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.receiveMessage();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(JMSException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(NamingException&nbsp;e)&nbsp;{\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\r\n&nbsp;&nbsp;&nbsp;&nbsp;}\r\n\r\n}</pre><p><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5;"><a title="复制代码" style="margin: 0px; padding: 0px; color: rgb(51, 51, 51); text-decoration: underline; border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin: 0px; padding: 0px; border: none !important;"/></a></span></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">我们先运行发送消息的类，这样在队列中就存在消息，然后用接受类去读取消息，运行结果如下：</p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);"><img src="http://images.cnitblog.com/blog/532638/201306/15172955-b287d06d81974fc0ab70d4897eac7e8c.jpg" alt="" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "/></p><p style="; ; line-height: 19px; font-size: 13px; font-family: verdana, &#39;ms song&#39;, 宋体, Arial, 微软雅黑, Helvetica, sans-serif; orphans: 2; white-space: normal; widows: 2; background-color: rgb(255, 255, 255);">&nbsp;</p><p><br/></p>', '2013-06-15 13:39:27', 8, 0, 0, 0, 1, 18, 'wugui'),
+(65, 23, 'afd', '', '', 'sdfsdf', '<p>sdfsdf</p>', '2013-06-15 13:59:05', 7, 0, 0, 0, 1, 18, 'wugui'),
+(66, 25, 'asfd', '', '', 'asfd', '<p>asfd</p>', '2013-06-16 04:25:01', 0, 0, 0, 0, 1, 18, 'wugui');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tblog_category`
+--
+
+CREATE TABLE IF NOT EXISTS `tblog_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  `sort_num` int(11) NOT NULL DEFAULT '10',
+  `articles` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=30 ;
+
+--
+-- 转存表中的数据 `tblog_category`
+--
+
+INSERT INTO `tblog_category` (`id`, `name`, `sort_num`, `articles`, `user_id`) VALUES
+(1, '未分类', 1, 0, 0),
+(2, 'django', 2, 0, 0),
+(3, 'wpf', 5, 0, 0),
+(5, 'wcf', 1000, 2, 0),
+(6, 'asdfasfd', 1000, 0, 0),
+(9, 'asdf', 1000, 0, 0),
+(10, 'asasasa', 3, 0, 0),
+(11, 'aaa', 5, 0, 12),
+(12, 'aaa', 5, 0, 12),
+(13, 'wcf', 5, 0, 12),
+(14, 'aaa', 5, 0, 12),
+(15, 'a', 56, 0, 12),
+(16, 'wcp', 2, 0, 13),
+(17, 'asdf', 1, 0, 14),
+(18, 'ddd', 4, 0, 14),
+(19, 'aa', 1, 0, 15),
+(21, 'ddd', 4, 2, 15),
+(22, '1', 1, 0, 17),
+(23, 'aaa', 3, 2, 18),
+(24, 'a', 3, 0, 20),
+(25, 'ddd', 5, 1, 18),
+(27, '未分类', 0, 0, 0),
+(28, '未分类', 0, 0, 0),
+(29, '未分类', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tblog_userprofile`
+--
+
+CREATE TABLE IF NOT EXISTS `tblog_userprofile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `blog_domain` varchar(200) NOT NULL,
+  `blog_title` varchar(200) NOT NULL,
+  `blog_keywords` varchar(500) NOT NULL,
+  `blog_about` varchar(500) NOT NULL,
+  `blog_announcement` varchar(500) NOT NULL,
+  `blog_template` varchar(50) NOT NULL,
+  `blog_css` varchar(500) NOT NULL,
+  `blog_headhtml` varchar(500) NOT NULL,
+  `blog_footerhtml` varchar(500) NOT NULL,
+  `createtime` datetime NOT NULL,
+  `stat_articles` int(11) NOT NULL,
+  `stat_views` int(11) NOT NULL,
+  `stat_comments` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=20 ;
+
+--
+-- 转存表中的数据 `tblog_userprofile`
+--
+
+INSERT INTO `tblog_userprofile` (`id`, `user_id`, `blog_domain`, `blog_title`, `blog_keywords`, `blog_about`, `blog_announcement`, `blog_template`, `blog_css`, `blog_headhtml`, `blog_footerhtml`, `createtime`, `stat_articles`, `stat_views`, `stat_comments`) VALUES
+(3, 3, '', '', '', '', '', 'default', '', '', '', '0000-00-00 00:00:00', 0, 0, 0),
+(5, 4, '', '', '', '', '', 'default', '', '', '', '2013-06-14 03:50:28', 0, 0, 0),
+(6, 5, '', '', '', '', '', 'default', '', '', '', '2013-06-14 03:50:28', 0, 0, 0),
+(7, 8, '', '', '', '', '', 'default', '', '', '', '2013-06-14 03:50:28', 0, 0, 0),
+(8, 9, '', '', '', '', '', 'default', '', '', '', '2013-06-14 03:50:28', 0, 0, 0),
+(9, 1, '', '', '', '', '', 'default', '', '', '', '0000-00-00 00:00:00', 0, 0, 0),
+(10, 10, '', '', '', '', '', 'default', '', '', '', '2013-06-14 03:50:28', 0, 0, 0),
+(11, 11, 'qqq', '', '', '', '', 'default', '', '', '', '2013-06-14 04:30:04', 0, 0, 0),
+(12, 12, '', '', '', '', '', 'default', '', '', '', '2013-06-14 05:03:56', 0, 0, 0),
+(13, 13, 'xiaoming', 'xiaoming', 'xiaoming', 'xiaoming', 'xiaoming', 'default', '', '', '', '2013-06-14 08:54:33', 0, 0, 0),
+(14, 14, '', '', '', '', '', 'default', '', '', '', '2013-06-14 12:31:49', 0, 0, 0),
+(15, 15, 'a', 'b', 'c', 'd', 'e', 'default', 'g', 'h', 'i', '2013-06-14 13:04:18', 0, 0, 0),
+(16, 16, 'shuaishuai', 'shuaishuai', 'shuaishuai', 'shuaishuai', 'shuaishuai', 'default', 'shuaishuai', 'shuaishuai', 'shuaishuai', '2013-06-15 04:43:20', 0, 0, 0),
+(17, 17, 'www', 'www', 'www', 'www', 'www', 'default', 'www', 'www', 'www', '2013-06-15 04:46:00', 0, 0, 0),
+(18, 18, 'wugui', 'wugui的博客', 'wugui', 'wugui', '', 'default', '', '', '', '2013-06-15 05:14:07', 1, 15, 0),
+(19, 20, 'dao', 'dao的博客', 'dao', 'dao', '', 'temp2', '', '', '', '2013-06-15 10:00:25', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_member`
+--
+
+CREATE TABLE IF NOT EXISTS `t_member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  `password` varchar(80) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `t_member`
+--
+
+
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+  ADD CONSTRAINT `group_id_refs_id_f4b32aac` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  ADD CONSTRAINT `permission_id_refs_id_6ba0f519` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`);
+
+--
+-- 限制表 `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  ADD CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
+
+--
+-- 限制表 `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  ADD CONSTRAINT `group_id_refs_id_274b862c` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  ADD CONSTRAINT `user_id_refs_id_40c41112` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- 限制表 `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  ADD CONSTRAINT `permission_id_refs_id_35d9ac25` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  ADD CONSTRAINT `user_id_refs_id_4dc23c39` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- 限制表 `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+  ADD CONSTRAINT `content_type_id_refs_id_93d2d1f8` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  ADD CONSTRAINT `user_id_refs_id_c0d12874` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- 限制表 `polls_choice`
+--
+ALTER TABLE `polls_choice`
+  ADD CONSTRAINT `poll_id_refs_id_3aa09835` FOREIGN KEY (`poll_id`) REFERENCES `polls_poll` (`id`);
+
+--
+-- 限制表 `tblog_article`
+--
+ALTER TABLE `tblog_article`
+  ADD CONSTRAINT `category_id_refs_id_ca845378` FOREIGN KEY (`category_id`) REFERENCES `tblog_category` (`id`);
+
+--
+-- 限制表 `tblog_userprofile`
+--
+ALTER TABLE `tblog_userprofile`
+  ADD CONSTRAINT `user_id_refs_id_9e32cf78` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);

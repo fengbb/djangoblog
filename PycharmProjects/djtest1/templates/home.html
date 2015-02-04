@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}个人博客{% endblock %}
+
+{% block content %}
+    <div class="content" xmlns="http://www.w3.org/1999/html">
+{% for b in blogs %}
+    <h1><span class="label label-primary">{{ b.title }}</span></h1>
+    <p>{{ b.createdate }}</p>
+    <p><h4><pre>{{ b.content|truncatewords_html:"20"}}</pre>
+    <a  href="/blog/{{ b.id }}" role="button">阅读全文</a></h4></p>
+{% endfor %}
+    </div>
+{% endblock %}
+{% block contentright %}
+{% for nblog in blogs %}
+    <ul>{{ nblog.title }}</ul>
+{% endfor %}
+{% endblock %}

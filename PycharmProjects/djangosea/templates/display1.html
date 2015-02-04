@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}个人博客{% endblock %}
+{% block dl %}
+    {% if username  %}
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href=#>欢迎您：{{username}}</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="/blog/logout">注销</a>
+    {% else %}
+            <a  style="font-size: 12px;color: red;display: inline-block; margin: 0px 0px 0px 0px" href="#" >您还未登录!</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="../login" >登录</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="../regist" >注册</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="content" xmlns="http://www.w3.org/1999/html">
+    <h3>{{ blogtitle }}</h3>
+    <p><span><h4>标签： {{ blogk }} &nbsp;&nbsp;</h4></span></p>
+
+    <pre>{{ blogdisp }}</pre>
+    <p class="dateview"><span>发布时间:{{ blogcreatedate }}</span><span>作者:{{ blogauthor }}</span></p>
+    <h5>版权声明：原创作品，如需转载，请与作者联系。否则将追究法律责任。</h5>
+    <div class="pl">
+        <h4>文章评论</h4>
+        {% for c in comments1 %}
+          <div class="pln">
+         <p class="lc" >{{ forloop.counter }}楼 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ c.cname }} </p>
+        <hr style="border:none;border-top:5px groove skyblue;" />
+        <p class="plnr">{{ c.comment }}</p>
+        <p class="pldate">{{ c.cdate | date:"Y-m-d H:i:s" }}</p>
+        <hr style="border-bottom:1px dashed #ffffff; height:1px; margin-top: 120px">
+        </div>
+        {% endfor %}
+        <script language="javascript">
+            function check(){
+                if (document.form1.commentusername.value=="")
+                {
+                    alert("禁止匿名用户评论")
+                    return false
+                }
+                return true
+            }
+
+        </script>
+        <p class="fbpl">发表评论</p>
+          <form method="post" enctype="multipart/form-data" class="plf" id="form1" onclick="return check(this.form);">
+            <dt>昵&nbsp;称:
+            <input type="text" id="commentusername" name="username" value="{{ username }}" class="plfn">
+              {% if not username  %}
+                  <a  style="font-size: 12px; margin: 0px 20px 0px 20px; color: #0000CD" href="../login" >登录</a>
+                  <a  style="font-size: 12px;margin: 0px 20px 0px 0px; color: #0000CD" href="../regist">快速注册</a>
+              {% endif %}
+
+              {{ cf.as_p }}
+        <input type="hidden" name="parentid" value="" class="pli1">
+        <input  type="submit"  class="pli" value="发表评论" >
+
+         {{ emsg }}
+
+        </form>
+      </div>
+    </div>
+
+{% endblock %}
+{% block contentright %}
+    {% for tblogs in nblogs %}
+    <ul><li><a href="/blog/{{ tblogs.id}}" role="button" target="_blank">{{ tblogs.title }}</a></li></ul>
+    {% endfor %}
+{% endblock %}
+{% block contentright1 %}
+    <ul>
+    {% for htblogs in hblogs%}
+        <li><a href="/blog/{{ htblogs.id }}" role="button" target="_blank"> {{ htblogs.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+{% block footer %}
+    <footer>
+  <p>版权所有 违者必究 Design by Baby <a href="" target="_blank">2014-11-28</a></p>
+</footer>
+{% endblock %}

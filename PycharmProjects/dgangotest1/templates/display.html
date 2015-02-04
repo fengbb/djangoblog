@@ -1,0 +1,22 @@
+{% extends 'base1.html' %}
+{% load set_var %}
+
+{% block title %}个人博客{% endblock %}
+
+{% block content %}
+    <div class="content" xmlns="http://www.w3.org/1999/html">
+    {% for b in blogdisp %}
+        {% set q='{{ b.id }}' %}
+       {% for blogid in bid %}
+         {% set w='{{ blogid }}' %}
+       {% ifequal  q w %}
+            <h1><span class="label label-primary">{{ b.title }}</span></h1>
+            <p>{{ b.createdate }}</p>
+            <p>{{ b.content}}</p>
+       {% else %}
+           <h2>不相等</h2>
+       {% endifequal %}
+{% endfor %}
+{% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load cutce %}
+{% block title %}个人博客{% endblock %}
+{{ username }}
+{% block dl %}
+    {% if username %}
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href=#>欢迎您：{{username}}</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="/blog/logout">注销</a>
+    {% else %}
+            <a  style="font-size: 12px;color: red;display: inline-block; margin: 0px 0px 0px 0px" href="#" >您还未登录!</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="login" >登录</a>
+            <a  style="font-size: 12px;display: inline-block; margin: 0px 0px 0px 0px" href="regist" >注册</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% for b in blogs %}
+    <h3>{{ b.title }}</h3>
+        <figure><img src="/static/images/{{ b.id }}.jpg"></figure>
+    <ul>
+        <p>{{ b.content|truncatewords:30}}</p>
+        <a title="/" href="/blog/{{ b.id }}"  class="readmore" target="_parent">阅读全文>></a>
+    </ul>
+    <p class="dateview"><span>发布时间:{{ b.createdate }}</span><span>作者:{{ b.authors }}</span><span>阅读:{{ b.readnumber }}</span></p>
+{% endfor %}
+{% endblock %}
+{% block contentright %}
+    {% for tblogs in nblogs %}
+    <ul class="rank"><li><a href="/blog/{{ tblogs.id}}"  title="{{ tblogs.title }}" role="button" target="_blank">{{ tblogs.title }}</a></li></ul>
+    {% endfor %}
+{% endblock %}
+{% block contentright1 %}
+    {% for htblogs in hblogs%}
+        <li><a href="/blog/{{ htblogs.id }}" role="button" target="_blank"> {{ htblogs.title }}</a></li>
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <footer>
+  <p>版权所有 违者必究 Design by Baby <a href="" target="_blank">2014-11-28</a></p>
+</footer>
+{% endblock %}

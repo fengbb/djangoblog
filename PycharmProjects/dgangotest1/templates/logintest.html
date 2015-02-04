@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="{% url 'home' %}" method='post' class="pull-right">
+            {% csrf_token %}
+            <input name='username' class="input-small" type="text" placeholder="用户名" >
+            <input name='password' class="input-small" type="password" placeholder="密码">
+            <button  type="submit">登录</button>
+</form>
+</body>
+</html>

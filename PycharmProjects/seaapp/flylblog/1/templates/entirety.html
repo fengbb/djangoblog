@@ -1,0 +1,15 @@
+{% extends 'base1.html' %}
+
+{% block title %}个人博客{% endblock %}
+
+{% block content %}
+    <div class="content">
+    {% for b in blogs %}
+        {% if b.title == 'LNMP' %}
+          <h2> {{ b.title }}</h2>
+          <h4> {{ b.createdate }}</h4>
+          <pre><h5> {{ b.content }}</h5></pre>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endblock %}

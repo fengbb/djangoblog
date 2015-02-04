@@ -1,0 +1,22 @@
+<body>
+        <p>发表评论</p>
+          <form method="post" enctype="multipart/form-data">
+           {{ cf.as_p }}
+        <input type="submit" value="提交"/>
+        </form>
+</body>
+
+
+<a>评论者：</a>
+            <a><input type="text" value=" "></a>
+            <p><textarea class="Input_text" role="textbox" name="comment"></textarea></p>
+ <a class="postBtn" role="button" >提交</a>
+              </form>
+    </div>
+
+<p>如果您想评论，请猛戳:</p>
+        <p><a href="/blog/{{ blogid }}/comment" role="button" target="_blank">我要发表评论</a></p>
+            </div>
+
+
+<div class="main">

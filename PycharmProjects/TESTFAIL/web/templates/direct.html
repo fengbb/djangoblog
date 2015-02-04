@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ title_text }}</title>
+</head>
+<body>
+<ul>
+    {% for item in object_list %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+<ul>
+    {% for string in string_list %}
+        <li>{{ string | lower }}</li>
+    {% endfor %}
+</ul>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Available?</th>
+    </tr>
+    {% for person in person_list %}
+    <tr>
+        <td>{{ person.name }}</td>
+        <td>{{ person.is_available|yesno:"Yes,No" }}</td>
+    </tr>
+    {% endfor %}
+{% ifequal object_list|length 10 %}
+    <ul>
+        {% for item in object %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+{% endifequal %}
+{% if object_list|length_is:10 %}
+    <ul>
+    {% for item in object_list %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</table>
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿{% extends 'basepage.html'%}
+
+{% block container %}
+<div id="wrap_content">
+    <div class="articleList">
+        
+        {% if articleList %}
+        {% for articleInfo in articleList%}
+        <div class="article">
+            <div class="artTitle"><h2><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a></h2></div>
+            <div class="artCon">
+                    
+                {{articleInfo.summary}}       
+            </div>
+
+            <div class="artMeta">
+                <span><a href="{% url 'userhome' uid=articleInfo.user_id%}">{{articleInfo.user_name}}</a>&nbsp;&nbsp;┆&nbsp;&nbsp;{{articleInfo.createTime}}&nbsp;&nbsp;┆&nbsp;&nbsp;阅读({{articleInfo.views}})&nbsp;&nbsp;┆&nbsp;&nbsp;评论({{articleInfo.comments}})&nbsp;&nbsp;┆&nbsp;&nbsp;支持({{articleInfo.goods}})&nbsp;&nbsp;┆&nbsp;&nbsp;反对({{articleInfo.bads}})</span>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div id="wrap_sidebar">
+    <div class="tbox">
+        
+        <div class="hd">
+            <h2>最新用户</h2>
+        </div>
+        <ul class="bd">
+            {% if newTopUserList %}
+            {% for userInfo in newTopUserList %}
+            <li><a href="{% url 'userhome' userInfo.id%}">{{userInfo.username}}</a></li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="tbox">
+        <div class="hd">
+            <h2>阅读排行</h2>
+        </div>
+        <ul class="bd">
+            {% if viewTopArticleList %}
+            {% for articleInfo in viewTopArticleList %}
+            <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.views}})</li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+
+    
+    <div class="tbox">
+        <div class="hd">
+            <h2>评论排行</h2>
+        </div>
+        <ul class="bd">
+            {% if commentTopArticleList %}
+            {% for articleInfo in commentTopArticleList %}
+            <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="tbox">
+        <div class="hd">
+            <h2>最新发表</h2>
+        </div>
+        <ul class="bd">
+            {% if newTopArticleList %}
+            {% for articleInfo in newTopArticleList %}
+            <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "temp2/basepage.html" %}
+
+{% block title %}{{ articleInfo.title }}{% endblock %}
+
+{% block content %}
+
+<div class="article">
+            
+    {% if message%}
+    <b>{{message}}</b>
+    {% endif %}
+
+
+    <div class="artTitle"><h1>{{title}}</h1></div>
+
+    <div class="artCon">{{articleInfo.content|safe}}
+        <div>支持({{articleInfo.goods}})&nbsp;&nbsp;┆&nbsp;&nbsp;反对({{articleInfo.bads}})</div>
+    </div>
+
+    <div class="artMeta">
+        <span><a href="{% url 'userhome' uid=articleInfo.user_id%}">{{articleInfo.user_name}}</a>&nbsp;&nbsp;┆&nbsp;&nbsp;{{articleInfo.createTime}}&nbsp;&nbsp;┆&nbsp;&nbsp;阅读({{articleInfo.views}})&nbsp;&nbsp;┆&nbsp;&nbsp;评论({{articleInfo.comments}})
+            {% if userInfos.0%}
+            &nbsp;&nbsp;┆&nbsp;&nbsp;<a href="{% url 'articleedit' uid=articleInfo.user_id aid=articleInfo.id%}">编辑</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock%}

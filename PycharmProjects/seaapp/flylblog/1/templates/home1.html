@@ -1,0 +1,12 @@
+{% extends 'base1.html' %}
+{% block title %}个人博客{% endblock %}
+{% block content %}
+
+    <div class="content">
+{% for b in blogs %}
+    <h1>{{ b.title }}</h1>
+    <h3>{{ b.createdate }}</h3>
+    <p>{{ b.content }}</p>
+{% endfor %}
+    </div>
+{% endblock %}

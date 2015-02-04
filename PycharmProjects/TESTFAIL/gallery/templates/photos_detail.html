@@ -1,0 +1,9 @@
+{% extends"base.html" %}
+
+{% block title %}{{ object.item.name }} - {{ object.title }}{% endblock %}
+{% block content%}
+<a href="{{ object.item.get_absolute_url }}">&laguo; Back to {{ object.item.name }} detail page</a>
+<h2>{{ object.item.name }} - {{ object.title }}/h2>
+    <img src="{{ object.get_image_url }}"/>
+    {% if object.caption %}<p>{{ object.caption }}</p>{% endif %}
+{% endblock %}

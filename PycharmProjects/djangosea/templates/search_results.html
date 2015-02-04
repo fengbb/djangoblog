@@ -1,0 +1,11 @@
+<p>you search for:<strong>{{ query }}</strong></p>
+{% if blogs %}
+    <p>Found{{ blogs|length }} blog{{ blogs|pluralize  }}.</p>
+    <ul>
+    {% for blog in blogs %}
+    <li>{{ blog.title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No books match your search criteria.</p>
+{% endif %}

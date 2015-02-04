@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>Baby个人博客网站</title>
+<meta name="keywords" content="个人博客,Baby" />
+<meta name="description" content="Baby个人博客，是一个苦逼搞运维的挨踢人的博客网站，记录了工作中的点点滴滴。" />
+<link href="{% static "css/base.css" %}" rel="stylesheet">
+<link href="{% static "css/about.css" %}" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="{% static "js/modernizr.js" %}"></script>
+<![endif]-->
+<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<header>
+  <div id="logo"><a href="/"></a></div>
+   <nav class="topnav" id="topnav"><a href="/blog"><span>首页</span><span class="en">Protal</span></a><a href="/blog/about"><span>关于我</span><span class="en">About</span></a><a href="newlist.html"><span>博客管理</span><span class="en">Life</span></a><a href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a>
+           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    {% block dl %}
+    {% endblock %}
+  </nav>
+</header>
+<article class="aboutcon">
+<h1 class="t_nav"><span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span><a href="/blog" class="n1">网站首页</a><a href="/blog/about" class="n2">关于我</a></h1>
+<div class="about left">
+  <h2>Just about me</h2>
+    <ul>
+     <p style="font-size: 22px;font-family: 'Architects Daughter', cursive; ">冯宝宝，男，一个90后IT运维人员！14年入行，从业一年。从一个一无所知的毛头小子到现在，一路走来，有喜悦、亦有泪水。当然这是成长必须经历的，不经历风雨怎能见彩虹！如果黎明前必须经历黑暗，那就让暴风雨来的更猛烈些吧！我相信这些暴风雨不会打败我只会让我变得更加强大。</p>
+    <p style="font-size: 22px;font-family: 'Architects Daughter', cursive; ">
+        人生就是一个得与失的过程，而我却是一个不记得失的人，我认为老天是公平的，当你失去一些东西的时候也会得到一些东西。如果你付出过那一定也会有回报的，只不过有些回报来的早，有些来的迟，但是迟早会来的。</p>
+    <p style="font-size: 22px;font-family: 'Architects Daughter', cursive; ">倘若希望在金色的秋天收获果实，那么在寒意侵人的早春，就该卷起裤腿，去不懈地拓荒、播种、耕耘，直到收获的那一天。</p>
+    <p style="font-size: 22px;font-family: 'Architects Daughter', cursive; ">
+       我不去想是否能够成功,既然选择了远方,便只顾风雨兼程;我不去想,身后会不会袭来寒风冷雨,既然目标是地平线,留给世界的只能是背影.
+    </p>
+    </ul>
+    <h2>About my blog</h2>
+    <p>域  名：www.flybaby.com 创建于2015年02月14日</p>
+</div>
+<aside class="right">
+    <div class="about_c">
+    <p>网名：梦若成空 </p>
+    <p>姓名：冯宝宝 </p>
+    <p>生日：1989-10-21</p>
+    <p>籍贯：陕西省—延安市</p>
+    <p>现居：重庆市—九龙坡区</p>
+    <p>职业：系统运维、IT技术支持</p>
+    <p>喜欢的书：《人性的弱点》《百年孤独》</p>
+</div>
+</aside>
+</article>
+<footer>
+  <p>Design by Baby</p>
+</footer>
+<script src="{% static "js/silder.js" %}"></script>
+</body>
+</html>

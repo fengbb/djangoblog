@@ -1,0 +1,5 @@
+#slider { position:relative; width:100%; margin-left:auto; margin-right:auto; height: 410px; background: url(loading.gif) no-repeat 50% 50%; box-shadow: 0 3px 4px rgba(0,0,0,0.25); z-index:-1; }
+#slider img {position:absolute; display: none; width:100%; margin:0 auto; !important; height:250px; z-index:-1}
+#slider a {border:0; display:block;}
+.nivoSlider {position:relative}
+.nivoSlider img {position:absolute; top:0px; left:0px;}

@@ -1,0 +1,113 @@
+<div id="panel_Profile" class="tbox">
+    <div class="hd">
+        <h2>About Me</h2>
+    </div>
+    <ul class="bd">
+        {{userInfos.4.username}}
+        <li>访问：{{userInfos.5.stat_views}}</li>
+        <li>文章：{{userInfos.5.stat_articles}}</li>
+        <li>评论：{{userInfos.5.stat_comments}}</li>
+        <li>园龄：{{userInfos.5.createtime}}</li>
+
+    </ul>
+</div>
+<div id="panel_Search" class="tbox">
+    <div class="hd">
+        <h2>文章搜索</h2>
+    </div>
+    <ul class="bd">
+        {% if viewsTopArticles %}
+        {% for articleInfo in viewsTopArticles %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.views}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+
+<div id="panel_Category" class="tbox">
+    <div class="hd">
+        <h2>分类</h2>
+    </div>
+    <ul class="bd">
+        {% if categoryList %}
+        {% for categoryInfo in categoryList %}
+        <li><a href="{% url 'articlecategory' uid=categoryInfo.user_id cid=categoryInfo.id%}">{{categoryInfo.name}}</a>({{categoryInfo.articles}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>  
+<div id="panel_Tags" class="tbox">
+    <div class="hd">
+        <h2>Tags</h2>
+    </div>
+    <ul class="bd">
+        {% if viewsTopArticles %}
+        {% for articleInfo in viewsTopArticles %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.views}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div id="panel_Archive" class="tbox">
+    <div class="hd">
+        <h2>存档</h2>
+    </div>
+    <ul class="bd">
+        {% if viewTopArticleList %}
+        {% for articleInfo in viewTopArticleList %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div id="panel_ViewTopArticle" class="tbox">
+    <div class="hd">
+        <h2>阅读排行</h2>
+    </div>
+    <ul class="bd">
+        {% if viewTopArticleList %}
+        {% for articleInfo in viewTopArticleList %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+  
+<div id="panel_ViewTopComment" class="tbox">
+    <div class="hd">
+        <h2>评论排行</h2>
+    </div>
+    <ul class="bd">
+        {% if viewTopCommentList %}
+        {% for articleInfo in commentTopArticleList %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div id="panel_NewTopComment" class="tbox">
+    <div class="hd">
+        <h2>最新评论</h2>
+    </div>
+    <ul class="bd">
+        {% if newTopCommentList %}
+        {% for articleInfo in newTopCommentList %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+<div id="panel_NewTopArticle" class="tbox">
+    <div class="hd">
+        <h2>最新发表</h2>
+    </div>
+    <ul class="bd">
+        {% if newTopArticleList %}
+        {% for articleInfo in newTopArticleList %}
+        <li><a href="{% url 'articleshow' uid=articleInfo.user_id aid=articleInfo.id%}">{{articleInfo.title}}</a>({{articleInfo.comments}})</li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+
+    

@@ -1,0 +1,13 @@
+{% extends 'base1.html' %}
+
+{% block title %}个人博客{% endblock %}
+
+{% block content %}
+    <div class="content" xmlns="http://www.w3.org/1999/html">
+    <h1><span class="label label-primary">{{ blogtitle }}</span></h1>
+    <p>{{ blogcreatedate }}</p>
+    <pre>{{ blogdisp }}</pre>
+
+    {{ bid }}
+    </div>
+{% endblock %}
